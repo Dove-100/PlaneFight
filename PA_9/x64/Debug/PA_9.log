@@ -1,0 +1,64 @@
+﻿  PA_9.cpp
+E:\SFML\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: 非 dll 接口 class“std::runtime_error”用作 dll 接口 class“sf::Exception”的基
+  (编译源文件“PA_9.cpp”)
+      E:\vs\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
+      参见“std::runtime_error”的声明
+      E:\SFML\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
+      参见“sf::Exception”的声明
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(80,23): warning C4305: “-=”: 从“double”到“T”截断
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(80,23): warning C4305:         with
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(80,23): warning C4305:         [
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(80,23): warning C4305:             T=float
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(80,23): warning C4305:         ]
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(87,23): warning C4305: “-=”: 从“double”到“T”截断
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(87,23): warning C4305:         with
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(87,23): warning C4305:         [
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(87,23): warning C4305:             T=float
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(87,23): warning C4305:         ]
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(94,23): warning C4305: “-=”: 从“double”到“T”截断
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(94,23): warning C4305:         with
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(94,23): warning C4305:         [
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(94,23): warning C4305:             T=float
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(94,23): warning C4305:         ]
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(101,23): warning C4305: “-=”: 从“double”到“T”截断
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(101,23): warning C4305:         with
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(101,23): warning C4305:         [
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(101,23): warning C4305:             T=float
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\Book.hpp(101,23): warning C4305:         ]
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\MiscFunctions.hpp(29,28): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\MiscFunctions.hpp(39,32): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\MiscFunctions.hpp(49,30): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\MiscFunctions.hpp(50,30): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\MiscFunctions.hpp(51,30): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\testCases.hpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“PA_9.cpp”)
+  
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(33,27): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(41,27): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(59,28): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(63,26): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(68,33): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(69,33): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(70,33): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(86,27): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\PA_9\PA_9.cpp(99,22): warning C4834: 放弃具有 [[nodiscard]] 属性的函数的返回值
+  PA_9.vcxproj -> C:\Users\Fu\source\Workspaces\2025游戏程序设计-SFML\Dingzhen\x64\Debug\PA_9.exe
