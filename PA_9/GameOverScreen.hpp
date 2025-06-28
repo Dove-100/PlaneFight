@@ -5,23 +5,36 @@
 #include "player.hpp"
 #include "background.hpp"
 
+/**
+ * @class GameOverScreen
+ * @brief 游戏结束画面类，继承自Menu基类
+ *
+ * 显示游戏结束界面，提供重新开始或退出游戏选项
+ */
 class GameOverScreen : public Menu {
 public:
+    /**
+     * @brief 构造函数
+     * @param backgroundTexture 背景纹理引用
+     * @param playerTexture 玩家纹理引用
+     * @param font 字体引用
+     * @param windowSize 窗口尺寸
+     */
     GameOverScreen(const sf::Texture& backgroundTexture, const sf::Texture& playerTexture, const sf::Font& font, sf::Vector2u windowSize)
-        : Menu(backgroundTexture, playerTexture, font, windowSize), // Initialize the base class (Menu)
+        : Menu(backgroundTexture, playerTexture, font, windowSize), // Initialize the base class (Menu) 初始化基类
         background(backgroundTexture),
         player({ (float)windowSize.x, (float)windowSize.y }, playerTexture),
-        gameOverText(font, "GAME OVER", 100),
-        escapeCont(font, "Press ESCAPE To Play Again", 50),
-        menuCont(font, "Or Press E to Exit", 50),
-        credits(font, "Credits: \nDylan Hale \nIsaiah Foster \nAaron Sanchez \nJustin Scofield", 20)
+        gameOverText(font, "GAME OVER", 100),// 游戏结束标题
+        escapeCont(font, "Press ESCAPE To Play Again", 50),//ESC再次开始
+        menuCont(font, "Or Press E to Exit", 50),//E退出游戏
+        credits(font, "Credits: \nDylan Hale \nIsaiah Foster \nAaron Sanchez \nJustin Scofield", 20)//制作者名单
     {
         // Set up the background
         background.setPosition({ 0, 0 });
         background.setScale({
             (float)windowSize.x / background.getTextureRect().size.x,
             (float)windowSize.y / background.getTextureRect().size.y
-        });
+            });
 
         // Set up the player
         player.setPosition({ (float)windowSize.x / 2, (float)windowSize.y / 2 });
@@ -49,7 +62,10 @@ public:
         credits.setPosition({ (float)windowSize.x / 4.0f, (float)windowSize.y / 2.0f });
     }
 
-    // Function to run the game over screen
+    /**
+    * @brief 运行游戏结束画面主循环
+    * @param window 渲染窗口引用
+    */
     void run(sf::RenderWindow& window) {
         while (window.isOpen()) {
             while (const std::optional event = window.pollEvent()) {

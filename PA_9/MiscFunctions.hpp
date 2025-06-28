@@ -11,56 +11,73 @@
 
 using sf::Text;
 
-//Set window to fullscreen, set framerate limit, and return window size
+/**
+ * 初始化游戏窗口
+ * @return 全屏模式的渲染窗口和窗口尺寸
+ */
 sf::RenderWindow initWindow()
 {
-	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-	sf::RenderWindow window(desktop, "Book Blaster", sf::Style::None);
-	window.setFramerateLimit(120);
-	sf::Vector2u windowSize = window.getSize();
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();// 获取桌面分辨率
+	sf::RenderWindow window(desktop, "Book Blaster", sf::Style::None);//创建无边框窗口
+	window.setFramerateLimit(120);//设置帧率
+	sf::Vector2u windowSize = window.getSize();//获取窗口大小
 	return window;
 }
 
 
-//Load player into memory
-Player loadPlayer(sf::RenderWindow &window)
+/**
+*加载玩家角色
+* @param window 游戏窗口引用（用于获取窗口尺寸）
+* @return 初始化后的玩家对象
+* */
+Player loadPlayer(sf::RenderWindow& window)
 {
 	sf::Texture playerTexture;
-	playerTexture.loadFromFile("Player.png");
-	Player playerSprite({ (float)window.getSize().x, (float)window.getSize().y }, playerTexture);
+	playerTexture.loadFromFile("Player.png");//加载玩家纹理
+	Player playerSprite({ (float)window.getSize().x, (float)window.getSize().y }, playerTexture);//创建玩家对象
 	return playerSprite;
 }
 
 
-//Load background into memory
+/**
+ * 加载游戏背景
+ * @return 初始化后的背景对象
+ */
 Background loadBackground()
 {
 	sf::Texture backgroundTexture;
-	backgroundTexture.loadFromFile("Backdrop.png");
+	backgroundTexture.loadFromFile("Backdrop.png");//加载背景纹理
 	Background backgroundSprite(backgroundTexture, { 0.f, 0.f });
 	return backgroundSprite;
 }
 
 
-//Load ball into memory
+/**
+ * 加载书籍（敌人）对象（当前函数无返回值，可能需要修改）
+ */
 void loadBall()
 {
-	sf::Texture bookTextures[3];
+	sf::Texture bookTextures[3];// 三种书籍纹理
 	bookTextures[0].loadFromFile("Book.png");
 	bookTextures[1].loadFromFile("Book2.png");
 	bookTextures[2].loadFromFile("Book3.png");
-	Book ball(bookTextures[std::rand() % 3]);
+	Book ball(bookTextures[std::rand() % 3]);// 随机选择一种纹理创建书籍
 	float scale = 0.05f + (static_cast<float>(std::rand() % 5 + 1) / 20); //Between 0.05 and 0.2
-	ball.setHealth(rand() % 5 + 8);
-	ball.setScale({ scale, scale });
+	ball.setHealth(rand() % 5 + 8);// 设置随机生命值（8~12）
+	ball.setScale({ scale, scale });//缩放
 }
 
-//checks if the pencil has hit the target
+/**
+ * 检测铅笔（子弹）是否击中书籍
+ * @param bullet 铅笔对象
+ * @param enemy 书籍对象
+ * @return 是否击中
+ */
 static bool checkShotHit(Pencil& bullet, Book& enemy)
 {
-	if (bullet.getIsShooting())
+	if (bullet.getIsShooting())// 只有发射状态的铅笔才检测
 	{
-
+		// 获取两者位置
 		float bulletX = bullet.getPosition().x;
 		float enemyX = enemy.getPosition().x;
 
@@ -68,37 +85,46 @@ static bool checkShotHit(Pencil& bullet, Book& enemy)
 		float enemyY = enemy.getPosition().y;
 
 
-		float tolerance = 50.f; // adjust this to change hitboxes
-
+		float tolerance = 50.f; // 碰撞检测容差（可调整命中框大小）
+		// 简单矩形碰撞检测
 		if (std::abs(bulletX - enemyX) < tolerance && std::abs(bulletY - enemyY) < tolerance)
 		{
-		std::cout << "TARGET HIT!\n" << std::endl;
-		enemy.setHealth(enemy.getHealth() - 1);
-		bullet.setIsHit();
-		return true;
+			std::cout << "TARGET HIT!\n" << std::endl;
+			enemy.setHealth(enemy.getHealth() - 1); // 减少书籍生命值
+			bullet.setIsHit(); // 子弹已击中
+			return true;
 		}
 	}
 	return false;
 }
 
 
-//checks if the player has been hit by a book
+/**
+ * 检测玩家是否被书籍击中
+ * @param player 玩家对象
+ * @param ball 书籍对象
+ * @return 是否发生碰撞
+ */
 static bool checkIfPlayerIsHit(Player& player, const Book& ball)
 {
-	//fet the bounding boxesof the player and the book
+	// 获取两者的全局边界框
 	sf::FloatRect playerBounds = player.getGlobalBounds();
 	sf::FloatRect ballBounds = ball.getGlobalBounds();
-	// Check if the bounding boxes intersect
+	// 使用SFML内置的碰撞检测
 	if (auto intersection = playerBounds.findIntersection(ballBounds)) {
 		return true;
 	}
 	return false;
 }
 
-
+/**
+ * 检查并更新最高分
+ * @param cur 当前分数
+ * @return 新的最高分
+ */
 int checkHighScore(int cur)
 {
-	//opens the highscore file to read
+	// 读取历史最高分
 	std::ifstream file("HighScore.txt");
 	if (!file.is_open())
 	{
@@ -108,7 +134,7 @@ int checkHighScore(int cur)
 	int highScore;
 	file >> highScore;
 	file.close();
-	//checks if the current score is higher than the highscore
+	// 如果当前分数更高，更新记录
 	if (cur > highScore)
 	{
 		std::ofstream file("HighScore.txt");
@@ -127,7 +153,14 @@ int checkHighScore(int cur)
 	}
 }
 
-
+/**
+ * 加载并初始化游戏文本标签
+ * @param window 游戏窗口
+ * @param font 字体对象
+ * @param scoreLabel 分数标签
+ * @param healthLabel 生命值标签
+ * @param highScoreLable 最高分标签
+ */
 void loadTexts(sf::RenderWindow& window, sf::Font& font, sf::Text& scoreLabel, sf::Text& healthLabel, sf::Text& highScoreLable)
 {
 
