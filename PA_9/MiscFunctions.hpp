@@ -75,25 +75,15 @@ void loadBall()
  */
 static bool checkShotHit(Pencil& bullet, Book& enemy)
 {
-	if (bullet.getIsShooting())// 只有发射状态的铅笔才检测
-	{
-		// 获取两者位置
-		float bulletX = bullet.getPosition().x;
-		float enemyX = enemy.getPosition().x;
-
-		float bulletY = bullet.getPosition().y;
-		float enemyY = enemy.getPosition().y;
-
-
-		float tolerance = 50.f; // 碰撞检测容差（可调整命中框大小）
-		// 简单矩形碰撞检测
-		if (std::abs(bulletX - enemyX) < tolerance && std::abs(bulletY - enemyY) < tolerance)
-		{
-			std::cout << "TARGET HIT!\n" << std::endl;
-			enemy.setHealth(enemy.getHealth() - 1); // 减少书籍生命值
-			bullet.setIsHit(); // 子弹已击中
-			return true;
-		}
+	
+	// 获取两者的全局边界框
+	sf::FloatRect playerBounds = bullet.getGlobalBounds();
+	sf::FloatRect ballBounds = enemy.getGlobalBounds();
+	// 使用SFML内置的碰撞检测
+	if (auto intersection = playerBounds.findIntersection(ballBounds)) {
+		enemy.setHealth(enemy.getHealth() - 1); // 减少书籍生命值
+		bullet.setIsHit(); // 子弹已击中
+		return true;
 	}
 	return false;
 }

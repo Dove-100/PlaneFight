@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Audio.hpp>
+#include <iostream>
 #include "player.hpp"
 
 class Pencil : public sf::Sprite
@@ -15,9 +16,11 @@ public:
     {
         setPosition(position);//设置铅笔初始位置
         setScale(sf::Vector2f(0.1f, 0.1f));//adjust to change pencil size//设置缩放大小
+        velocity_bullet = { 0,0 };
+        hadShooted = false;
         isShooting = false;//初始状态：未射击
         isHit = false;//初始状态：未射中
-        speed = 30;//速度：30
+        speed = 20;//速度：30
     }
     //更新铅笔状态
     // 参数：
@@ -32,17 +35,26 @@ public:
         //未射击，铅笔跟随玩家
         if (!isShooting)
         {
-            setPosition({ player.getPosition().x + 30, player.getPosition().y - 10 });
+            setPosition({ player.getPosition().x, player.getPosition().y});
         }
         //射击，铅笔移动
         //movement for already been shot
-        if (isShooting)
+        if (isShooting && !hadShooted)
         {
-            move({ 0.f, -speed * windowSize.x / 1920 });
+            
+            float x = sf::Mouse::getPosition().x;
+            float y = sf::Mouse::getPosition().y;
+
+            float xy = sqrt((x - player.getPosition().x) * (x - player.getPosition().x) + (y - player.getPosition().y) * (y - player.getPosition().y));
+            velocity_bullet = { (x - player.getPosition().x) / xy * speed, (y - player.getPosition().y) / xy * speed };
+            hadShooted = true;
             return;
         }
-        //空格射击
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))//shoot pencil
+        if (hadShooted) {
+            move(velocity_bullet);
+        }
+        //左键射击
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
         {
             isShooting = true;
             laserSound.play();
@@ -73,4 +85,6 @@ private:
     float speed;//速度
     bool isShooting;//是否发射
     bool isHit;//是否击中
+    bool hadShooted;
+    sf::Vector2f velocity_bullet;  //速度矢量
 };
